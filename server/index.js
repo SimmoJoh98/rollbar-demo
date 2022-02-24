@@ -25,17 +25,17 @@ app.get(`/`, (req,res) => {
 //ROLLBAR REQS
 app.get('/api/critical', (req,res) => {
     res.status(200).send(`Critical sent to rollbar`)
-    rollbar.critical(wack = 'rollbar critical sent')
+    rollbar.critical(context = 'rollbar critical sent')
 })
 
 app.get('/api/error', (req,res) => {
     res.status(200).send(`error sent to rollbar`)
-    rollbar.error(wack = 'rollbar error sent')
+    rollbar.error(context = 'rollbar error sent')
 })
 
 app.get('/api/info', (req,res) => {
     res.status(200).send(`info sent to rollbar`)
-    rollbar.info('this should work for info')
+    rollbar.info(context = 'this should work for info')
 })
 
 app.get('/api/warning', (req,res) => {
