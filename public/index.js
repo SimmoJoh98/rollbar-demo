@@ -1,5 +1,6 @@
 const axios = require('axios');
 console.log(`Javascript linked successfully!`)
+
 function sendCritical(){
     console.log('Sent Critical')
     axios.get(`/api/critical`).then(
