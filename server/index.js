@@ -1,12 +1,46 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const Rollbar = require("rollbar");
+
+
+// include and initialize the rollbar library with your access token
+
+const rollbar = new Rollbar({
+    accessToken: '8a8fd14a053a4590b991db4b1d27e6fa',
+    captureUncaught: true,
+    captureUnhandledRejections: true
+  });
+  // record a generic message and send it to Rollbar
+  rollbar.log("Just reloaded the heroku!");
+
 
 app.use(express.json())
+app.use(rollbar.errorHandler())
 
 //GET ENDPOINTS
 app.get(`/`, (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
+})
+//ROLLBAR REQS
+app.get('/api/critical', (req,res) => {
+    res.status(200).send(`Critical sent to rollbar`)
+    rollbar.critical(wack = 'rollbar critical sent')
+})
+
+app.get('/api/error', (req,res) => {
+    res.status(200).send(`error sent to rollbar`)
+    rollbar.error(wack = 'rollbar error sent')
+})
+
+app.get('/api/info', (req,res) => {
+    res.status(200).send(`info sent to rollbar`)
+    rollbar.info(wack = 'rollbar info sent')
+})
+
+app.get('/api/warning', (req,res) => {
+    res.status(200).send(`warning sent to rollbar`)
+    rollbar.warning(wack = 'rollbar warn sent')
 })
 //sends javascript and css to client--------------------------//
 app.get('/index.js', (req, res) => {
@@ -23,21 +57,6 @@ app.get('/styles.css', (req,res) => {
 //POST ENDPOINTS
 
 //DELETE ENDPOINTS
-
-
-
-
-// include and initialize the rollbar library with your access token
-const Rollbar = require("rollbar");
-const rollbar = new Rollbar({
-  accessToken: '8a8fd14a053a4590b991db4b1d27e6fa',
-  captureUncaught: true,
-  captureUnhandledRejections: true
-});
-// record a generic message and send it to Rollbar
-rollbar.log("Just reloaded the heroku!");
-
-
 
 let port = process.env.PORT || 3005
 app.listen(port, () => console.log(`Now listening on ${port}`))
