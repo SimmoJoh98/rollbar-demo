@@ -40,7 +40,7 @@ app.get('/api/info', (req,res) => {
 
 app.get('/api/warning', (req,res) => {
     res.status(200).send(`warning sent to rollbar`)
-    rollbar.warning(wack = 'rollbar warn sent')
+    rollbar.warning(context = 'this is my warning')
 })
 //sends javascript and css to client--------------------------//
 app.get('/js', (req, res) => {
