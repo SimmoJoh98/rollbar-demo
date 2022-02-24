@@ -35,7 +35,7 @@ app.get('/api/error', (req,res) => {
 
 app.get('/api/info', (req,res) => {
     res.status(200).send(`info sent to rollbar`)
-    rollbar.info(wack = 'rollbar info sent')
+    rollbar.info('this should work for info')
 })
 
 app.get('/api/warning', (req,res) => {

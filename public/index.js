@@ -18,7 +18,7 @@ function sendWarning(){
     ).catch(err => console.log(err))
 }
 function sendInfo(){
-    console.log('Sent Ifno')
+    console.log('Sent Info')
     axios.get(`/api/info`).then(
         res => {
             alert(res.data)
