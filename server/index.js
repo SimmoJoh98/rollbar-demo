@@ -43,7 +43,7 @@ app.get('/api/warning', (req,res) => {
     rollbar.warning(wack = 'rollbar warn sent')
 })
 //sends javascript and css to client--------------------------//
-app.get('/index.js', (req, res) => {
+app.get('./index.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.js'))
 })
 app.get('/styles.css', (req,res) => {
