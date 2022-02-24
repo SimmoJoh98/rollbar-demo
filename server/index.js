@@ -4,11 +4,25 @@ const path = require('path')
 
 app.use(express.json())
 
-
+//GET ENDPOINTS
 app.get(`/`, (req,res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
+//sends javascript and css to client--------------------------//
+app.get('/js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.js'))
+})
+app.get('/styles.css', (req,res) => {
+    res.sendFile(path.join(__dirname, '../public/styles.css'))
+})
+//-----------------------------------------------------------//
 
+
+//PUT ENDPOINTS
+
+//POST ENDPOINTS
+
+//DELETE ENDPOINTS
 
 
 
@@ -21,7 +35,7 @@ const rollbar = new Rollbar({
   captureUnhandledRejections: true
 });
 // record a generic message and send it to Rollbar
-rollbar.log("Hello world!");
+rollbar.log("Just reloaded the heroku!");
 
 
 
